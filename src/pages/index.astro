@@ -1,0 +1,189 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eye-Zone Photography | Professional Photography in Maua</title>
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="description" content="Eye-Zone Photography - Professional photography services in Maua Town. Book your session today!" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Capture Every Moment</h1>
+          <p>Professional Photography Services in Maua Town</p>
+          <a href="https://wa.me/254701089391?text=Hello%20Eyezone%2C%20I%20want%20to%20book%20a%20session" class="cta-btn" target="_blank" rel="noopener">Book Your Session</a>
+        </div>
+      </section>
+
+      <section class="intro">
+        <h2>Welcome to Eye-Zone</h2>
+        <p>At Eye-Zone Photography, we specialize in capturing your most precious moments with creativity and professionalism. Located at Maua Mall in Maua Town, we serve the community with top-tier photography services for all occasions.</p>
+      </section>
+
+      <section class="highlights">
+        <h2>Our Services</h2>
+        <div class="service-cards">
+          <div class="card">
+            <h3>Portrait Photography</h3>
+            <p>Professional portraits that capture your personality and style.</p>
+          </div>
+          <div class="card">
+            <h3>Event Coverage</h3>
+            <p>Weddings, birthdays, corporate events - we cover it all.</p>
+          </div>
+          <div class="card">
+            <h3>Commercial Photography</h3>
+            <p>Product photography and business promotional shoots.</p>
+          </div>
+        </div>
+        <a href="/services" class="link-btn">View All Services</a>
+      </section>
+
+      <section class="cta-section">
+        <h2>Ready to Book?</h2>
+        <p>Contact us today on WhatsApp and let's create amazing memories together!</p>
+        <a href="/contact" class="cta-btn">Contact Us</a>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+  }
+  main {
+    min-height: 60vh;
+  }
+  .hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/image1.jpeg') center/cover;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+  .hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  .hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+  }
+  .cta-btn {
+    background: #25d366;
+    color: #fff;
+    padding: 1rem 2.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: inline-block;
+    transition: background 0.3s;
+  }
+  .cta-btn:hover {
+    background: #1ea952;
+  }
+  .intro {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    text-align: center;
+  }
+  .intro h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+  }
+  .intro p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+  }
+  .highlights {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 1rem;
+    text-align: center;
+  }
+  .highlights h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #1a1a1a;
+  }
+  .service-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  .card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  .card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #25d366;
+  }
+  .card p {
+    color: #666;
+    line-height: 1.6;
+  }
+  .link-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #25d366;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+  }
+  .link-btn:hover {
+    color: #1ea952;
+  }
+  .cta-section {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 4rem 1rem;
+    text-align: center;
+  }
+  .cta-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  @media (max-width: 768px) {
+    .hero-content h1 {
+      font-size: 2rem;
+    }
+    .hero-content p {
+      font-size: 1.1rem;
+    }
+  }
+</style>
