@@ -1,0 +1,196 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Services | Eye-Zone Photography</title>
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="description" content="Explore Eye-Zone Photography services: portraits, events, weddings, commercial shoots and more." />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section class="services-hero">
+        <h1>Our Photography Services</h1>
+        <p>Professional photography solutions for every occasion</p>
+      </section>
+
+      <section class="services-list">
+        <div class="service">
+          <h2>Portrait Photography</h2>
+          <p>Capture your personality with professional portrait sessions. Perfect for individual portraits, family photos, graduation pictures, and professional headshots.</p>
+          <ul>
+            <li>Individual portraits</li>
+            <li>Family photography</li>
+            <li>Graduation photos</li>
+            <li>Professional headshots</li>
+          </ul>
+        </div>
+
+        <div class="service">
+          <h2>Event Photography</h2>
+          <p>From corporate events to birthday parties, we ensure every special moment is beautifully documented.</p>
+          <ul>
+            <li>Corporate events</li>
+            <li>Birthday parties</li>
+            <li>Anniversaries</li>
+            <li>Community gatherings</li>
+          </ul>
+        </div>
+
+        <div class="service">
+          <h2>Wedding Photography</h2>
+          <p>Your wedding day deserves exceptional photography. We capture every emotion, detail, and unforgettable moment of your special day.</p>
+          <ul>
+            <li>Pre-wedding shoots</li>
+            <li>Full-day wedding coverage</li>
+            <li>Reception photography</li>
+            <li>Edited photo albums</li>
+          </ul>
+        </div>
+
+        <div class="service">
+          <h2>Commercial Photography</h2>
+          <p>Boost your business with professional product and promotional photography designed to showcase your brand.</p>
+          <ul>
+            <li>Product photography</li>
+            <li>Business portraits</li>
+            <li>Promotional materials</li>
+            <li>Social media content</li>
+          </ul>
+        </div>
+
+        <div class="service">
+          <h2>Studio Sessions</h2>
+          <p>Our fully-equipped studio at Maua Mall offers a comfortable, professional environment for all your photography needs.</p>
+          <ul>
+            <li>Controlled lighting setup</li>
+            <li>Professional backdrops</li>
+            <li>Comfortable studio space</li>
+            <li>Flexible scheduling</li>
+          </ul>
+        </div>
+
+        <div class="service">
+          <h2>Outdoor Photography</h2>
+          <p>Take advantage of natural settings and beautiful Maua landscapes for stunning outdoor photography sessions.</p>
+          <ul>
+            <li>Nature photography</li>
+            <li>Outdoor portraits</li>
+            <li>Location shoots</li>
+            <li>Adventure photography</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="cta">
+        <h2>Ready to Book Your Session?</h2>
+        <p>Contact us today and let's create beautiful memories together!</p>
+        <a href="/contact" class="cta-btn">Get in Touch</a>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+  }
+  .services-hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/image3.jpeg') center/cover;
+    padding: 6rem 1rem;
+    text-align: center;
+    color: #fff;
+  }
+  .services-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  .services-hero p {
+    font-size: 1.3rem;
+  }
+  .services-list {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  .service {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+  .service:hover {
+    transform: translateY(-5px);
+  }
+  .service h2 {
+    font-size: 1.8rem;
+    color: #25d366;
+    margin-bottom: 1rem;
+  }
+  .service p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    color: #555;
+  }
+  .service ul {
+    margin-left: 1.5rem;
+    line-height: 1.9;
+  }
+  .service ul li {
+    color: #666;
+  }
+  .cta {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 4rem 1rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .cta h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .cta p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  .cta-btn {
+    background: #25d366;
+    color: #fff;
+    padding: 1rem 2.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: inline-block;
+    transition: background 0.3s;
+  }
+  .cta-btn:hover {
+    background: #1ea952;
+  }
+  @media (max-width: 768px) {
+    .services-hero h1 {
+      font-size: 2rem;
+    }
+    .services-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
