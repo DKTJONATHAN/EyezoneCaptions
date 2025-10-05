@@ -1,9 +1,10 @@
 ---
+import { useState } from 'react';
 ---
 <header>
   <nav>
     <div class="logo">
-      <img src="/logo.jpeg" alt="Eye-Zone Logo" />
+      <img src="/logo.png" alt="Eye-Zone Logo" />
     </div>
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
@@ -12,13 +13,51 @@
       <li><a href="/gallery">Gallery</a></li>
       <li><a href="/contact">Contact</a></li>
     </ul>
-    <a href="https://wa.me/254701089391?text=Hello%20Eyezone%2C%20I%20want%20to%20book%20a%20session" class="book-btn" target="_blank" rel="noopener">Book Now</a>
+    <button class="book-btn" id="openBookingBtn">Book Now</button>
   </nav>
+
+  <!-- Booking Modal -->
+  <dialog id="bookingModal" class="modal">
+    <form id="bookingForm" method="dialog" class="modal-content">
+      <h2>Book a Photography Session</h2>
+
+      <label for="name">Full Name*</label>
+      <input id="name" name="name" type="text" required />
+
+      <label for="phone">Phone Number*</label>
+      <input id="phone" name="phone" type="tel" required />
+
+      <label for="service">Photography Service*</label>
+      <select id="service" name="service" required>
+        <option value="">Select a service</option>
+        <option value="Portrait Photography">Portrait Photography</option>
+        <option value="Event Photography">Event Photography</option>
+        <option value="Wedding Photography">Wedding Photography</option>
+        <option value="Commercial Photography">Commercial Photography</option>
+        <option value="Studio Session">Studio Session</option>
+        <option value="Outdoor Photography">Outdoor Photography</option>
+      </select>
+
+      <label for="venue">Venue/Location*</label>
+      <input id="venue" name="venue" type="text" required />
+
+      <label for="date">Preferred Date</label>
+      <input id="date" name="date" type="date" />
+
+      <label for="message">Additional Details</label>
+      <textarea id="message" name="message" rows="3"></textarea>
+
+      <div class="modal-buttons">
+        <button type="button" id="closeBookingBtn" class="cancel-btn">Cancel</button>
+        <button type="submit" class="send-btn">Send via WhatsApp</button>
+      </div>
+    </form>
+  </dialog>
 </header>
 
 <style>
   header {
-    background: #000; /* solid black background */
+    background: #000;
     padding: 1rem 2rem;
     position: sticky;
     top: 0;
@@ -33,12 +72,9 @@
     align-items: center;
     flex-wrap: wrap;
   }
-  .logo {
-    /* No text, only logo */
-  }
   .logo img {
-    height: 70px; /* Bigger logo height */
-    width: auto; /* Maintain aspect ratio, not cropped */
+    height: 90px; /* Bigger logo */
+    width: auto;
     display: block;
   }
   .nav-links {
@@ -63,7 +99,8 @@
     color: #fff;
     padding: 0.75rem 1.6rem;
     border-radius: 6px;
-    text-decoration: none;
+    border: none;
+    cursor: pointer;
     font-weight: 600;
     font-size: 1.1rem;
     transition: background 0.3s;
@@ -82,4 +119,117 @@
       flex-wrap: wrap;
     }
   }
+
+  /* Modal styles */
+  dialog.modal {
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+  }
+  .modal-content {
+    padding: 1.8rem 2rem;
+    background: #111;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .modal-content h2 {
+    margin-bottom: 0.5rem;
+    color: #25d366;
+    text-align: center;
+  }
+  label {
+    font-size: 0.95rem;
+  }
+  input, select, textarea {
+    font-size: 1rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background: #222;
+    color: #eee;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #25d366;
+    background: #111;
+  }
+  .modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .cancel-btn {
+    background: transparent;
+    color: #eee;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #eee;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+  .cancel-btn:hover {
+    background: #eee;
+    color: #111;
+  }
+  .send-btn {
+    background: #25d366;
+    color: #000;
+    padding: 0.6rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+  .send-btn:hover {
+    background: #1ea952;
+  }
 </style>
+
+<script>
+  const openBtn = document.getElementById('openBookingBtn');
+  const modal = document.getElementById('bookingModal');
+  const closeBtn = document.getElementById('closeBookingBtn');
+  const form = document.getElementById('bookingForm');
+
+  openBtn.addEventListener('click', () => {
+    modal.showModal();
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.close();
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const phone = form.phone.value.trim();
+    const service = form.service.value;
+    const venue = form.venue.value.trim();
+    const date = form.date.value;
+    const message = form.message.value.trim();
+
+    if (!name || !phone || !service || !venue) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    let whatsappMsg = `Hello, Eyezone, my name is ${name} and I want to book a photography session.%0A`;
+    whatsappMsg += `Phone: ${phone}%0A`;
+    whatsappMsg += `Service: ${service}%0A`;
+    whatsappMsg += `Venue: ${venue}%0A`;
+    if (date) whatsappMsg += `Preferred Date: ${date}%0A`;
+    if (message) whatsappMsg += `Additional Details: ${message}`;
+
+    const whatsappUrl = `https://wa.me/254701089391?text=${whatsappMsg}`;
+
+    window.open(whatsappUrl, '_blank');
+    modal.close();
+    form.reset();
+  });
+</script>
