@@ -1,0 +1,137 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const images = [
+  'image1.jpeg',
+  'image2.jpeg',
+  'image3.jpeg',
+  'image4.jpeg',
+  'image5.jpeg',
+  'image6.jpeg',
+];
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery | Eye-Zone Photography</title>
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="description" content="View our portfolio of stunning photography work at Eye-Zone Photography." />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section class="gallery-hero">
+        <h1>Our Gallery</h1>
+        <p>Explore our collection of beautiful moments</p>
+      </section>
+
+      <section class="gallery">
+        <div class="gallery-grid">
+          {images.map(img => (
+            <div class="gallery-item">
+              <img src={`/${img}`} alt={img} loading="lazy" />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="cta">
+        <h2>Want to be featured in our gallery?</h2>
+        <p>Book your photography session today!</p>
+        <a href="/contact" class="cta-btn">Contact Us</a>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+  }
+  .gallery-hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/image1.jpeg') center/cover;
+    padding: 6rem 1rem;
+    text-align: center;
+    color: #fff;
+  }
+  .gallery-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  .gallery-hero p {
+    font-size: 1.3rem;
+  }
+  .gallery {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .gallery-item {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+  .gallery-item:hover {
+    transform: scale(1.03);
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+  }
+  .cta {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 4rem 1rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .cta h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .cta p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  .cta-btn {
+    background: #25d366;
+    color: #fff;
+    padding: 1rem 2.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: inline-block;
+    transition: background 0.3s;
+  }
+  .cta-btn:hover {
+    background: #1ea952;
+  }
+  @media (max-width: 768px) {
+    .gallery-hero h1 {
+      font-size: 2rem;
+    }
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
