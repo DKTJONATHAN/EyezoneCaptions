@@ -1,6 +1,9 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+// List of images to use in the slideshow gallery
+const slideshowImages = ['/image1.jpeg', '/image2.jpeg', '/image3.jpeg', '/image4.jpeg'];
 ---
 <html lang="en">
   <head>
@@ -38,20 +41,76 @@ import Footer from '../components/Footer.astro';
             <p>Weddings, birthdays, corporate events - we cover it all.</p>
           </div>
           <div class="card">
-            <h3>Commercial Photography</h3>
-            <p>Product photography and business promotional shoots.</p>
+            <h3>Wedding Photography</h3>
+            <p>Your wedding day deserves exceptional photography. We capture every emotion, detail, and unforgettable moment of your special day.</p>
           </div>
         </div>
         <a href="/services" class="link-btn">View All Services</a>
       </section>
 
-      <section class="cta-section">
-        <h2>Ready to Book?</h2>
-        <p>Contact us today on WhatsApp and let's create amazing memories together!</p>
+      <!-- Gallery Slideshow Section -->
+      <section class="gallery-slider">
+        <h2>From Our Gallery</h2>
+        <div class="slider-container" aria-label="Gallery slideshow" role="region">
+          <img id="slideshowImage" src={slideshowImages[0]} alt="Gallery Image" />
+        </div>
+      </section>
+
+      <section class="cta">
+        <h2>Want to be featured in our gallery?</h2>
+        <p>Book your session today and be part of our collection!</p>
         <a href="/contact" class="cta-btn">Contact Us</a>
       </section>
     </main>
     <Footer />
+
+    <script>
+      const images = {JSON.stringify(slideshowImages)};
+      let currentIndex = 0;
+
+      const imgElement = document.getElementById('slideshowImage');
+
+      // Automatically cycle images every 2 seconds
+      let intervalId = setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+        imgElement.src = images[currentIndex];
+      }, 2000);
+
+      // Swipe support for touch devices
+      let startX = 0;
+      let isSwiping = false;
+
+      const sliderContainer = document.querySelector('.slider-container');
+
+      sliderContainer.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isSwiping = true;
+        clearInterval(intervalId); // Pause auto cycling during interaction
+      });
+
+      sliderContainer.addEventListener('touchend', (e) => {
+        if (!isSwiping) return;
+        const endX = e.changedTouches[0].clientX;
+        const deltaX = endX - startX;
+
+        if (deltaX > 50) { // swipe right
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+        } else if (deltaX < -50) { // swipe left
+          currentIndex = (currentIndex + 1) % images.length;
+        }
+
+        imgElement.src = images[currentIndex];
+        isSwiping = false;
+
+        // Resume automatic cycling with a delay
+        setTimeout(() => {
+          intervalId = setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            imgElement.src = images[currentIndex];
+          }, 2000);
+        }, 3000);
+      });
+    </script>
   </body>
 </html>
 
@@ -69,14 +128,17 @@ import Footer from '../components/Footer.astro';
   main {
     min-height: 60vh;
   }
+
+  /* Hero Section */
   .hero {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/image1.jpeg') center/cover;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/image1.jpeg') center/cover no-repeat;
     height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: #fff;
+    padding: 0 1rem;
   }
   .hero-content h1 {
     font-size: 3rem;
@@ -100,6 +162,8 @@ import Footer from '../components/Footer.astro';
   .cta-btn:hover {
     background: #1ea952;
   }
+
+  /* Intro section */
   .intro {
     max-width: 900px;
     margin: 3rem auto;
@@ -116,6 +180,8 @@ import Footer from '../components/Footer.astro';
     line-height: 1.8;
     color: #555;
   }
+
+  /* Service Highlights */
   .highlights {
     max-width: 1200px;
     margin: 4rem auto;
@@ -164,26 +230,78 @@ import Footer from '../components/Footer.astro';
   .link-btn:hover {
     color: #1ea952;
   }
-  .cta-section {
+
+  /* From Our Gallery Slideshow Section */
+  .gallery-slider {
+    padding: 4rem 1rem;
+    text-align: center;
+  }
+  .gallery-slider h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #1a1a1a;
+  }
+  .slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #slideshowImage {
+    max-width: 100%;
+    max-height: 450px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  /* Call-To-Action Section */
+  .cta {
     background: #1a1a1a;
     color: #fff;
     padding: 4rem 1rem;
     text-align: center;
+    margin-top: 3rem;
   }
-  .cta-section h2 {
+  .cta h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
   }
-  .cta-section p {
+  .cta p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
   }
+  .cta-btn {
+    background: #25d366;
+    color: #fff;
+    padding: 1rem 2.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: inline-block;
+    transition: background 0.3s;
+  }
+  .cta-btn:hover {
+    background: #1ea952;
+  }
+
+  /* Responsive */
   @media (max-width: 768px) {
     .hero-content h1 {
       font-size: 2rem;
     }
     .hero-content p {
       font-size: 1.1rem;
+    }
+    .card {
+      padding: 1.2rem;
+    }
+    .gallery-slider h2 {
+      font-size: 1.5rem;
+    }
+    #slideshowImage {
+      max-height: 300px;
     }
   }
 </style>
